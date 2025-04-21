@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contador con Derrape</title>
+  <style>
+    body {
+      background: url('https://wallpapers.com/images/hd/drift-cars-nissan-skyline-gtr-r34-5xex6mn959z3s1zg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .contador-container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 340px;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    #contador {
+      font-size: 60px;
+      margin-bottom: 30px;
+      color: #111;
+    }
+
+    .botones {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .reset {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .reset:hover {
+      background-color: #5a6268;
+    }
+
+    .derrapo {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .derrapo:hover {
+      background-color: #c82333;
+    }
+
+    .redimio {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .redimio:hover {
+      background-color: #218838;
+    }
+
+    .derrape-fuerte {
+      background-color: #6610f2;
+      color: white;
+    }
+
+    .derrape-fuerte:hover {
+      background-color: #520dc2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contador-container">
+    <h1>¿Cuántas veces puede derrapar en el sup Fran?</h1>
+    <div id="contador">0</div>
+    <div class="botones">
+      <button class="reset" onclick="resetear()">Resetear</button>
+      <button class="derrapo" onclick="derrapo()">¡Derrapo! +1</button>
+      <button class="derrape-fuerte" onclick="derrapeFuerte()">Derrape fuerte +2</button>
+      <button class="redimio" onclick="redimio()">Redimí -1</button>
+    </div>
+  </div>
+
+  <script>
+    let contador = parseInt(localStorage.getItem('contador')) || 0;
+    document.getElementById('contador').innerText = contador;
+
+    function actualizarPantalla() {
+      document.getElementById('contador').innerText = contador;
+      localStorage.setItem('contador', contador);
+    }
+
+    function resetear() {
+      contador = 0;
+      actualizarPantalla();
+    }
+
+    function derrapo() {
+      contador += 1;
+      actualizarPantalla();
+    }
+
+    function derrapeFuerte() {
+      contador += 2;
+      actualizarPantalla();
+    }
+
+    function redimio() {
+      contador -= 1;
+      actualizarPantalla();
+    }
+  </script>
+
+</body>
+</html>
